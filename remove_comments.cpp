@@ -6,7 +6,6 @@ string remove_comments(string input)
 {
     int size = input.length();
     string output;
-
     bool comment_type_single = false;
     bool comment_type_multi = false;
 
@@ -16,19 +15,16 @@ string remove_comments(string input)
         if (input[i] == '/' && input[i+1] == '/')
         {
             comment_type_single = true;
-            // i++; 
         } 
         // Check single line comment: end
         else if (comment_type_single == true && input[i] == '\n')
         {
             comment_type_single = false;
-            i++;
         }
         // Check multi line comment: start
         else if (input[i] == '/' && input[i+1] == '*')
         {
             comment_type_multi = true;
-            i++; 
         } 
         // Check multi line comment: end
         else if (comment_type_multi == true && input[i] == '*' && input[i+1] == '/')
@@ -36,9 +32,10 @@ string remove_comments(string input)
             comment_type_multi = false;
             i++;
         }
-        // Not a comment
+        // In the middle of a comment
         else if (comment_type_single || comment_type_multi) 
         {
+            i++;
             continue; 
         } 
         // Add to output if the current token is not a part of a comment
@@ -54,11 +51,16 @@ int main(int argc, char* argv[])
 {
     string str;
 	ifstream inputfile;
-	inputfile.open (argv[1]);
+    ofstream outputfile;
+	inputfile.open(argv[1]);
+    outputfile.open("input_C_source_rem.cpp");
+    cout << endl << endl;
+    cout << "长者语录" << endl << endl;
     while(!inputfile.eof()) // To get you all the lines.
     {
-        getline(inputfile,str); // Saves the line in STRING.
-        cout << remove_comments(str) << endl;
+        getline(inputfile,str);
+        outputfile << remove_comments(str) << endl;
     }
     inputfile.close();
+    outputfile.close();
 }
