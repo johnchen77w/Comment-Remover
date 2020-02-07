@@ -1,4 +1,5 @@
 # Comment-Remover
 
-The test file is for testing purposes only.
-I don't actually like big booty bitches.
+This C++ program removes comments from a given C/C++ program that is assumed to be correct.
+
++1s
