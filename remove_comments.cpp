@@ -50,12 +50,10 @@ string remove_comments(string input)
 int main(int argc, char* argv[])
 {
     string str;
-	ifstream inputfile;
+    ifstream inputfile;
     ofstream outputfile;
-	inputfile.open(argv[1]);
+    inputfile.open(argv[1]);
     outputfile.open("input_C_source_rem.cpp");
-    cout << endl << endl;
-    cout << "长者语录" << endl << endl;
     while(!inputfile.eof()) // To get you all the lines.
     {
         getline(inputfile,str);
